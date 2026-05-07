@@ -1,0 +1,23 @@
+{
+  "name": "luminacalc",
+  "version": "1.0.0",
+  "description": "A minimal aesthetic desktop calculator built with Electron.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byarti/LuminaCalc.git"
+  },
+  "keywords": [],
+  "author": "Arti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byarti/LuminaCalc/issues"
+  },
+  "homepage": "https://github.com/byarti/LuminaCalc#readme",
+  "devDependencies": {
+    "electron": "^42.0.0"
+  }
+}

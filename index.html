@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LuminaCalc - Meow OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="calculator-device">
+        <div class="top-bezel">
+            <div class="bezel-left">𑄝</div>
+            <div class="bezel-center">MEOW OS v1.0</div>
+            <div class="bezel-right">≡</div>
+        </div>
+
+        <div class="screen-bezel">
+            <div class="screen">
+                <div class="screen-header">
+                    <span style="flex:1;">𑄝 MEOW OS v1.0</span>
+                    <span id="clock" style="flex:1; text-align:center;">12:34</span>
+                    <span style="flex:1; text-align:right;">ᯤ</span>
+                </div>
+
+                <div class="screen-content">
+                    <div id="view-calc" class="view active" style="display:flex; width:100%; height:100%; flex-direction:column; justify-content:center; align-items:flex-end;">
+                        <div id="history" style="font-size:32px; opacity:0.8; margin-bottom:5px; min-height:38px; word-wrap:break-word; max-width:100%;"></div>
+                        <div id="display" style="font-size:64px; line-height:1; word-wrap:break-word; max-width:100%; text-align:right; overflow:hidden;">0</div>
+                    </div>
+
+                    <div id="view-cat" class="view"
+                        style="display:none; width:100%; height:100%; flex-direction:row; align-items:center; justify-content:space-evenly; overflow:hidden; padding:0 10px;">
+                        <div class="cat-art" style="margin-top:-10px;">
+                            <pre style="font-size:26px; line-height:1.2; margin:0; font-weight:bold;" id="cat-face"> /\_/\ 
+( o.o )
+ > ^ < </pre>
+                        </div>
+                        <div class="speech-bubble" style="font-size:18px; max-width:55%; word-wrap:break-word; text-align:center; padding:8px;" id="cat-reaction">Feed me human!</div>
+                    </div>
+
+                    <div id="view-memo" class="view" style="display:none; width:100%; height:100%;">
+                        <textarea id="memo-pad"
+                            style="width:100%; height:100%; background:transparent; border:none; resize:none; font-family:'VT323', monospace; font-size:24px; color:#1a1e16; outline:none;"
+                            placeholder="Type notes here..."></textarea>
+                    </div>
+
+                    <div id="view-optn" class="view" style="display:none; width:100%; flex-direction:column;">
+                        <div style="font-size:24px; border-bottom:2px solid #1a1e16; margin-bottom:10px;">Settings</div>
+                        <div>[x] Sound</div>
+                        <div>[x] Animations</div>
+                        <div>[ ] 24hr Time</div>
+                        <div>[x] CRT Effect</div>
+                        <div style="margin-top:auto;">v1.0.0</div>
+                    </div>
+
+                    <div id="view-popup" class="view" style="display:none; position:absolute; top:35px; left:15px; right:15px; background:#bac5b2; border:2px solid #1a1e16; padding:10px; z-index:10; flex-direction:column; box-shadow: 4px 4px 0 rgba(0,0,0,0.2);">
+                        <div style="font-size:20px; border-bottom:2px solid #1a1e16; margin-bottom:5px;">SELECT MODE</div>
+                        <div id="menu-calc" style="cursor:pointer; font-size:24px;">[1] CALC</div>
+                        <div id="menu-cat" style="cursor:pointer; font-size:24px;">[2] CAT</div>
+                        <div id="menu-memo" style="cursor:pointer; font-size:24px;">[3] MEMO</div>
+                        <div id="menu-optn" style="cursor:pointer; font-size:24px;">[4] OPTN</div>
+                    </div>
+                </div>
+
+        </div>
+
+
+
+        <div class="middle-indicators">
+            <div class="power-indicator">
+                <div class="led on"></div>
+                <span>PURR POWER</span>
+            </div>
+            <div class="status-indicators">
+                <span>🐟︎ <div class="led"></div></span>
+                <span>♨ <div class="led"></div></span>
+                <span>zZ <div class="led on"></div></span>
+            </div>
+        </div>
+
+        <div class="keypad">
+            <!-- Row 1 -->
+            <button class="btn-small action-btn" data-action="clear">AC</button>
+            <button class="btn-small action-btn" data-action="backspace">⌫</button>
+            <button class="btn-small cat-btn" id="mode-btn">𑄝</button>
+            <button class="btn-small op-btn" data-op="/">÷</button>
+            <button class="btn-small op-btn" data-op="*">×</button>
+
+            <!-- Row 2 -->
+            <button class="num-btn">7</button>
+            <button class="num-btn">8</button>
+            <button class="num-btn">9</button>
+            <button class="op-btn" data-op="-">-</button>
+            <button class="op-btn" data-op="+">+</button>
+
+            <!-- Row 3 -->
+            <button class="num-btn">4</button>
+            <button class="num-btn">5</button>
+            <button class="num-btn">6</button>
+            <button class="action-btn" data-action="percent">%</button>
+            <button class="action-btn" data-action="sqrt">√</button>
+
+            <!-- Row 4 -->
+            <button class="num-btn">1</button>
+            <button class="num-btn">2</button>
+            <button class="num-btn">3</button>
+            <button class="btn-equals action-btn" data-action="calculate">=</button>
+
+            <!-- Row 5 -->
+            <button class="btn-zero num-btn">0</button>
+            <button class="num-btn">.</button>
+        </div>
+
+        <div class="bottom-bezel">
+            ⋆.𐙚 ̊ GOOD JOB, HUMAN! ❤︎ &nbsp; ₍^. .^₎⟆
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
