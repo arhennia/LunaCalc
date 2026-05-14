@@ -2,7 +2,7 @@
   "name": "luminacalc",
   "version": "1.0.0",
   "description": "A minimal aesthetic desktop calculator built with Electron.",
-  "main": "main.js",
+  "main": "src/main/main.js",
   "scripts": {
     "start": "electron ."
   },
