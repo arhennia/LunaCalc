@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --ink: #e8e4dc;
+  --ink-dim: #9b9590;
+  --ink-faint: #4a4743;
+  --bg: #0d0c0b;        /* void */
+  --bg2: #141311;       /* surface */
+  --bg3: #1c1a18;       /* cat body */
+  --bg4: #242220;       /* btn idle */
+  --bg5: #2e2b28;       /* btn hover */
+  --accent: #c8b89a;    /* warm ink */
+  --accent2: #8fb8a0;   /* eyes/ok */
+  --accent3: #9aacb8;   /* display glow / ops */
+  --accent4: #c4a882;   /* gold */
+  --border: rgba(200, 184, 154, 0.12);
+  --border-strong: rgba(200, 184, 154, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body {
+  background: transparent; /* Electron window is transparent */
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  height: 280px;
+  width: 200px;
+}
+
+.app-container {
+  width: 200px;
+  height: 252px; /* 280 - 28 (head) */
+  background: var(--bg2);
+  border-radius: 10px;
+  position: relative;
+  margin-top: 28px; /* Offset for cat head */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border);
+}
+
+/* --- CRT OVERLAY --- */
+.crt-overlay {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 3px
+  );
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  border-radius: inherit;
+}
+
+/* --- CAT HEAD --- */
+.cat-head {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 28px;
+  background: var(--bg3);
+  border-radius: 50% 50% 40% 40%;
+  border: 1px solid rgba(200, 184, 154, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: grab;
+}
+
+.cat-head:active { cursor: grabbing; }
+
+.cat-ear {
+  width: 9px;
+  height: 11px;
+  background: var(--bg3);
+  border: 1px solid rgba(200, 184, 154, 0.2);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  position: absolute;
+}
+
+.cat-ear.left { top: -9px; left: 4px; }
+.cat-ear.right { top: -9px; right: 4px; }
+
+.cat-eyes {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.cat-eye {
+  width: 5px;
+  height: 5px;
+  background: var(--accent2);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(143, 184, 160, 0.5);
+  transition: transform 0.14s ease, height 0.14s ease;
+}
+
+/* --- CALC BODY --- */
+.calc-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* --- DISPLAY AREA --- */
+.calc-display {
+  background: var(--bg);
+  height: 56px;
+  padding: 10px 14px 8px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-bottom: 1px solid rgba(200, 184, 154, 0.1);
+}
+
+.calc-display .expr {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  min-height: 12px;
+  text-align: left;
+}
+
+.calc-display .result {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  color: var(--ink);
+  text-align: right;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 8px rgba(232, 228, 220, 0.2);
+}
+
+/* --- BUTTONS --- */
+.calc-buttons {
+  flex: 1;
+  padding: 10px 12px 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+  background: var(--bg3);
+  border-radius: 0 0 10px 10px;
+}
+
+.calc-btn {
+  background: var(--bg4);
+  border: 1px solid rgba(200, 184, 154, 0.08);
+  border-radius: 4px;
+  color: var(--ink-dim);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.08s ease;
+  outline: none;
+}
+
+.calc-btn:hover {
+  background: var(--bg5);
+  color: var(--ink);
+  border-color: rgba(200, 184, 154, 0.18);
+}
+
+.calc-btn:active,
+.calc-btn.active-keyboard {
+  transform: scaleY(0.93);
+  background: #1a1917;
+}
+
+.calc-btn.op {
+  color: var(--accent3);
+  background: rgba(154, 172, 184, 0.06);
+}
+
+.calc-btn.fn {
+  color: var(--ink-faint);
+  font-size: 9.5px;
+}
+
+.calc-btn.eq {
+  background: rgba(200, 184, 154, 0.14);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.calc-btn.wide {
+  grid-column: span 2;
+}
+
+/* --- CAT TAIL --- */
+.cat-tail {
+  position: absolute;
+  bottom: -18px;
+  right: 18px;
+  width: 32px;
+  height: 14px;
+  border-bottom: 2px solid rgba(200, 184, 154, 0.2);
+  border-right: 2px solid rgba(200, 184, 154, 0.2);
+  border-radius: 0 0 12px 0;
+  pointer-events: none;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0); }
+}
+
+.cat-eye.blinking {
+  animation: blink 0.14s ease;
+}
