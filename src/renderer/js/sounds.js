@@ -39,28 +39,11 @@ window.playButtonSound = (key) => {
   }
 };
 
-window.playMeow = () => {
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
+const meowAudio = new Audio('assets/meow.mp3');
 
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  
-  osc.type = 'triangle';
-  // Meow pitch sweep: M-e-o-w
-  osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
-  osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.3);
-  
-  gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-  
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.4);
+window.playMeow = () => {
+  meowAudio.currentTime = 0;
+  meowAudio.play().catch(err => console.error("Error playing meow:", err));
 };
 
 // Initial startup chime
